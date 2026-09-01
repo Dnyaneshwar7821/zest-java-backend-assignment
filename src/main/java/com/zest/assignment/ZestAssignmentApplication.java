@@ -8,5 +8,6 @@ public class ZestAssignmentApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ZestAssignmentApplication.class, args);
+        System.err.println("App started");
     }
 }

@@ -37,15 +37,22 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
 
-        // Delete any existing refresh token for this user to maintain single active session or clean up
-        refreshTokenRepository.findByUser(user).ifPresent(refreshTokenRepository::delete);
+        Optional<RefreshToken> existingTokenOpt = refreshTokenRepository.findByUser(user);
+        RefreshToken refreshToken;
 
-        RefreshToken refreshToken = RefreshToken.builder()
-                .user(user)
-                .expiryDate(Instant.now().plusMillis(refreshTokenDurationMs))
-                .token(UUID.randomUUID().toString())
-                .revoked(false)
-                .build();
+        if (existingTokenOpt.isPresent()) {
+            refreshToken = existingTokenOpt.get();
+            refreshToken.setToken(UUID.randomUUID().toString());
+            refreshToken.setExpiryDate(Instant.now().plusMillis(refreshTokenDurationMs));
+            refreshToken.setRevoked(false);
+        } else {
+            refreshToken = RefreshToken.builder()
+                    .user(user)
+                    .expiryDate(Instant.now().plusMillis(refreshTokenDurationMs))
+                    .token(UUID.randomUUID().toString())
+                    .revoked(false)
+                    .build();
+        }
 
         return refreshTokenRepository.save(refreshToken);
     }

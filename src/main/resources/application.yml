@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: zest-backend-assignment
+  profiles:
+    active: dev
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+    show-sql: false
+
+  mvc:
+    problemdetails:
+      enabled: false
+
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# JWT & Security Configuration
+app:
+  jwt:
+    # 256-bit Base64-encoded secret key
+    secret: dGhpc0lzQVZlcnlTZWN1cmVTZWNyZXRLZXlGb3JKd3RUb2tlbkdlbmVyYXRpb25aZXN0QXNzaWdubWVudDEyMzQ1Njc4OTAxMjM0NTY=
+    # 15 minutes in milliseconds
+    expiration-ms: 900000
+    # 7 days in milliseconds
+    refresh-expiration-ms: 604800000
+  cors:
+    allowed-origins: "*"
+
+# SpringDoc OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    tryItOutEnabled: true
+
+# Actuator Endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.zest.assignment: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: INFO

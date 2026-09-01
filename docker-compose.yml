@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # ==========================================
+  # PostgreSQL Database Service
+  # ==========================================
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: zest-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: zest_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d zest_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - zest-network
+
+  # ==========================================
+  # Spring Boot Application Service
+  # ==========================================
+  api-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zest-api-service
+    restart: unless-stopped
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/zest_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      APP_JWT_SECRET: dGhpc0lzQVZlcnlTZWN1cmVTZWNyZXRLZXlGb3JKd3RUb2tlbkdlbmVyYXRpb25aZXN0QXNzaWdubWVudDEyMzQ1Njc4OTAxMjM0NTY=
+      APP_JWT_EXPIRATION_MS: 900000
+      APP_JWT_REFRESH_EXPIRATION_MS: 604800000
+    ports:
+      - "8080:8080"
+    networks:
+      - zest-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  zest-network:
+    driver: bridge

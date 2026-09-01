@@ -269,8 +269,8 @@ Ensure Docker & Docker Compose are installed and running on your system.
 
 ```bash
 # Clone the repository
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd <REPOSITORY_FOLDER>
+git clone https://github.com/Dnyaneshwar7821/zest-java-backend-assignment.git
+cd zest-java-backend-assignment
 
 # Build and start all services (PostgreSQL + Spring Boot App)
 docker compose up --build -d

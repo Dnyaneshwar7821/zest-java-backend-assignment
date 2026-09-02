@@ -1,3 +1,4 @@
+# Zest India IT Assessment - Startup Script
 param (
     [string]$Profile = "local"
 )

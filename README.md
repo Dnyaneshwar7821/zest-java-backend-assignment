@@ -422,3 +422,5 @@ A complete, pre-configured Postman collection is included in the root directory:
 | **OpenAPI / Swagger 3** | ✅ Completed | Interactive `/swagger-ui.html` with BearerAuth scheme |
 | **Dockerfile & Docker Compose** | ✅ Completed | Multi-stage Dockerfile + PostgreSQL compose setup |
 | **Clean Architecture** | ✅ Completed | Controller, Service, Repository, Entity, DTO, Security |
+
+<!-- Updated for Submission 2026-09-02 -->

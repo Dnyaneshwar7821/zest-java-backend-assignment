@@ -1,3 +1,4 @@
+# Zest India IT Assessment - Test Runner Script
 # Helper script to run all tests with Java 17
 if (-not (Test-Path "$env:JAVA_HOME\bin\javac.exe")) {
     if (Test-Path "C:\Program Files\Java\jdk-17") {

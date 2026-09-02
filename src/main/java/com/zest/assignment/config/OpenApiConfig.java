@@ -1,3 +1,6 @@
+/**
+ * Zest India IT Assessment - Production-Grade RESTful API
+ */
 package com.zest.assignment.config;
 
 import io.swagger.v3.oas.models.Components;

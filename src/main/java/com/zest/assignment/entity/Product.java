@@ -1,3 +1,6 @@
+/**
+ * Zest India IT Assessment - Production-Grade RESTful API
+ */
 package com.zest.assignment.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;

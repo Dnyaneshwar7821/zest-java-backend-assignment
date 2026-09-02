@@ -3,7 +3,7 @@
 		"_postman_id": "8f3b1459-a22b-426b-9c77-4b95d98fa632",
 		"name": "Zest India IT - Product Management API",
 		"description": "Postman collection for testing Zest India IT Java Backend Developer Assessment RESTful API.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",`r`n		"_updated": "2026-09-02"
 	},
 	"variable": [
 		{

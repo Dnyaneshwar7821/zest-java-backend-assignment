@@ -1,3 +1,6 @@
+/**
+ * Zest India IT Assessment - Production-Grade RESTful API
+ */
 package com.zest.assignment.repository;
 
 import com.zest.assignment.config.JpaAuditingConfig;

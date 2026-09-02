@@ -1,3 +1,6 @@
+/**
+ * Zest India IT Assessment - Production-Grade RESTful API
+ */
 package com.zest.assignment.exception;
 
 import com.zest.assignment.dto.response.ErrorResponse;

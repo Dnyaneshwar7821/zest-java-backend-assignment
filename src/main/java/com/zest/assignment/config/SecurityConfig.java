@@ -1,3 +1,6 @@
+/**
+ * Zest India IT Assessment - Production-Grade RESTful API
+ */
 package com.zest.assignment.config;
 
 import com.zest.assignment.security.CustomAccessDeniedHandler;
